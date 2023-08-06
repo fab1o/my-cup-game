@@ -1,0 +1,8 @@
+{
+  "name": "My Cup Game",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "99774ce3"
+}
