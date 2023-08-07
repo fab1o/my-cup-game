@@ -22,7 +22,7 @@ const FindEventsMenu: React.FC<FindEventsMenuProps> = ({ contentId, defaultDisab
   return (
     <IonMenu menuId="FindEventsMenu" side="start" contentId={contentId} disabled={defaultDisabled}>
       <IonHeader>
-        <IonToolbar color="tertiary">
+        <IonToolbar color="purple">
           <IonTitle>Find Events</IonTitle>
         </IonToolbar>
       </IonHeader>

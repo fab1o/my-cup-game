@@ -1,10 +1,10 @@
 import { IonIcon, IonLabel, IonItemDivider, IonItemGroup } from '@ionic/react';
 import { useState } from 'react';
 import {
-  chevronExpandOutline,
-  chevronExpandSharp,
-  chevronCollapseOutline,
-  chevronCollapseSharp,
+  chevronDownOutline,
+  chevronDownSharp,
+  chevronForwardOutline,
+  chevronForwardSharp,
 } from 'ionicons/icons';
 
 import SubMenu from '../SubMenu';
@@ -35,8 +35,8 @@ const FindEventsSubMenu: React.FC<FindEventsSubMenuProps> = ({
           slot="end"
           color="medium"
           size="large"
-          ios={hidden ? chevronExpandOutline : chevronCollapseOutline}
-          md={hidden ? chevronExpandSharp : chevronCollapseSharp}
+          ios={hidden ? chevronDownOutline : chevronForwardOutline}
+          md={hidden ? chevronDownSharp : chevronForwardSharp}
         />
       </IonItemDivider>
 

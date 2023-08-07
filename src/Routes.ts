@@ -17,6 +17,15 @@ import {
   settingsSharp,
   balloonOutline,
   balloonSharp,
+  accessibility,
+  search,
+  addCircle,
+  settings,
+  peopleCircle,
+  trophy,
+  medal,
+  fitness,
+  balloon,
 } from 'ionicons/icons';
 
 import MyEvents from './pages/MyEvents/MyEvents';
@@ -25,10 +34,10 @@ import Settings from './pages/Settings/Settings';
 import HostEvent from './pages/HostEvent/HostEvent';
 
 export interface Route {
-  name: string;
   title: string;
   ios?: string;
   md?: string;
+  activeIcon?: string;
   href: string;
   itemStyle?: {
     [key: string]: any;
@@ -38,123 +47,131 @@ export interface Route {
   };
 }
 
+interface ITabRoutes {
+  [name: string]: TabRoute;
+}
+
 interface TabRoute extends Route {
   page: React.FC;
   menu?: string;
 }
 
-const TabRoutes: Array<TabRoute> = [
-  {
-    name: 'MyEvents',
-    title: 'My Events',
-    ios: accessibilityOutline,
-    md: accessibilitySharp,
-    href: '/MyEvents',
-    page: MyEvents,
-    menu: 'MyEventsMenu',
-  },
-  {
-    name: 'FindEvents',
+export const TabRoutes: ITabRoutes = {
+  FindEvents: {
     title: 'Find Events',
     ios: searchOutline,
     md: searchSharp,
+    activeIcon: search,
     href: '/FindEvents',
     page: FindEvents,
     menu: 'FindEventsMenu',
   },
-  {
-    name: 'HostEvent',
+  MyEvents: {
+    title: 'My Events',
+    ios: accessibilityOutline,
+    md: accessibilitySharp,
+    activeIcon: accessibility,
+    href: '/MyEvents',
+    page: MyEvents,
+    menu: 'MyEventsMenu',
+  },
+  HostEvent: {
     title: 'Host Event',
     ios: addCircleOutline,
     md: addCircleSharp,
+    activeIcon: addCircle,
     href: '/HostEvent',
     page: HostEvent,
   },
-  {
-    name: 'Settings',
+  Settings: {
     title: 'Settings',
     ios: settingsOutline,
     md: settingsSharp,
+    activeIcon: settings,
     href: '/Settings',
     page: Settings,
   },
-];
+};
 
-const MyEventsMenuRoutes: Array<Route> = [
-  {
-    name: 'Pickups',
+export interface IMenuRoutes {
+  [name: string]: Route;
+}
+
+export const MyEventsMenuRoutes: IMenuRoutes = {
+  Pickups: {
     ios: peopleCircleOutline,
     md: peopleCircleSharp,
-    title: 'All My Pick-Ups',
+    activeIcon: peopleCircle,
+    title: 'My Pick-up Games',
     href: '/MyEvents/Pickups',
   },
-  {
-    name: 'Leagues',
+  Leagues: {
     ios: trophyOutline,
     md: trophySharp,
-    title: 'All My Leagues',
+    activeIcon: trophy,
+    title: 'My Leagues',
     href: '/MyEvents/Leagues',
   },
-  {
-    name: 'Tournaments',
+  Tournaments: {
     ios: medalOutline,
     md: medalSharp,
-    title: 'All My Tournaments',
+    activeIcon: medal,
+    title: 'My Tournaments',
     href: '/MyEvents/Tournaments',
   },
-  {
-    name: 'Clinics',
+  Clinics: {
     ios: fitnessOutline,
     md: fitnessSharp,
-    title: 'All My Clinics',
+    activeIcon: fitness,
+    title: 'My Clinics',
     href: '/MyEvents/Clinics',
   },
-  {
-    name: 'Parties',
+  Parties: {
     ios: balloonOutline,
     md: balloonSharp,
-    title: 'All My Parties',
+    activeIcon: balloon,
+    title: 'My Parties',
     href: '/MyEvents/Parties',
   },
-];
+};
 
-const FindEventsMenuRoutes: Array<Route> = [
-  {
-    name: 'Pickups',
+export const FindEventsMenuRoutes: IMenuRoutes = {
+  Pickups: {
     ios: peopleCircleOutline,
     md: peopleCircleSharp,
-    title: 'All My Pick-Ups',
+    activeIcon: peopleCircle,
+    title: 'Pick-up Games',
     href: '/FindEvents/<sport>/Pickups',
   },
-  {
-    name: 'Leagues',
+  Leagues: {
     ios: trophyOutline,
     md: trophySharp,
+    activeIcon: trophy,
     title: 'Leagues',
     href: '/FindEvents/<sport>/Leagues',
   },
-  {
-    name: 'Tournaments',
+  Tournaments: {
     ios: medalOutline,
     md: medalSharp,
+    activeIcon: medal,
     title: 'Tournaments',
     href: '/FindEvents/<sport>/Tournaments',
   },
-  {
-    name: 'Clinics',
+  Clinics: {
     ios: fitnessOutline,
     md: fitnessSharp,
+    activeIcon: fitness,
     title: 'Clinics',
     href: '/FindEvents/<sport>/Clinics',
   },
-];
+};
 
-const FindEventsEspecialMenuRoutes: Array<Route> = [
-  {
-    name: 'Parties',
+export const FindEventsEspecialMenuRoutes: IMenuRoutes = {
+  Parties: {
     ios: balloonOutline,
     md: balloonSharp,
-    title: 'All Parties',
+    activeIcon: balloon,
+    title: 'Parties',
     href: '/FindEvents/Parties',
     labelStyle: { fontWeight: 'bold' },
     itemStyle: {
@@ -163,11 +180,10 @@ const FindEventsEspecialMenuRoutes: Array<Route> = [
       borderTopColor: 'var(--color)',
     },
   },
-];
+};
 
-const MyEventsEspecialMenuRoutes: Array<Route> = [
-  {
-    name: 'Events',
+export const MyEventsEspecialMenuRoutes: IMenuRoutes = {
+  Events: {
     title: 'All My Events',
     href: '/MyEvents/Events',
     labelStyle: { fontWeight: 'bold' },
@@ -177,12 +193,4 @@ const MyEventsEspecialMenuRoutes: Array<Route> = [
       borderTopColor: 'var(--color)',
     },
   },
-];
-
-export {
-  TabRoutes,
-  MyEventsMenuRoutes,
-  FindEventsMenuRoutes,
-  MyEventsEspecialMenuRoutes,
-  FindEventsEspecialMenuRoutes,
 };

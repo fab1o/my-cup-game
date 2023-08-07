@@ -11,6 +11,7 @@ import {
   IonTabs,
 } from '@ionic/react';
 
+import { useState } from 'react';
 import { Redirect, Route, useLocation } from 'react-router';
 
 import { TabRoutes } from './Routes';
@@ -35,21 +36,27 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/floating-tab-bar.css';
 
 import './App.css';
 
 setupIonicReact();
 
-const AppContainer: React.FC = () => {
-  const location = useLocation();
+const TabRoutesNames = Object.keys(TabRoutes);
+const defaultTabRouteName = TabRoutesNames[0];
+const defaultHref = TabRoutes[defaultTabRouteName].href;
 
-  const defaultHref = '/FindEvents';
+const AppContainer: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<string>(defaultTabRouteName);
+
+  const location = useLocation();
 
   const isFindsEventsRoute = location.pathname.startsWith(defaultHref) === false;
   const isMyEventsRoute = location.pathname.startsWith(defaultHref) === true;
 
   async function handleTabClick(name?: string) {
     if (name) {
+      setActiveTab(name);
       await menuController.enable(true, name);
     }
   }
@@ -66,27 +73,38 @@ const AppContainer: React.FC = () => {
       ></MyEventsMenu>
 
       <IonPage id="main-content">
-        <IonTabs>
+        <IonTabs onIonTabsDidChange={(e) => handleTabClick(e.detail.tab)}>
           <IonRouterOutlet>
-            {TabRoutes.map((tabRoute) => (
-              <Route key={tabRoute.name} path={tabRoute.href} component={tabRoute.page} />
-            ))}
+            {TabRoutesNames.map((name: string) => {
+              const tabRoute = TabRoutes[name];
+
+              return <Route key={name} path={tabRoute.href} component={tabRoute.page} />;
+            })}
             <Route exact path="/">
               <Redirect to={defaultHref} />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            {TabRoutes.map((tabRoute) => (
-              <IonTabButton
-                key={tabRoute.name}
-                tab={tabRoute.name}
-                href={tabRoute.href}
-                onClick={() => handleTabClick(tabRoute.menu)}
-              >
-                <IonIcon aria-hidden="true" ios={tabRoute.ios} md={tabRoute.md} />
-                <IonLabel>{tabRoute.title}</IonLabel>
-              </IonTabButton>
-            ))}
+            {TabRoutesNames.map((name: string) => {
+              const tabRoute = TabRoutes[name];
+
+              const icon = name === activeTab ? tabRoute.activeIcon : undefined;
+              const ios = name === activeTab ? undefined : tabRoute.ios;
+              const md = name === activeTab ? undefined : tabRoute.md;
+
+              return (
+                <IonTabButton key={name} tab={name} href={tabRoute.href}>
+                  <IonIcon
+                    aria-hidden="true"
+                    aria-label={name}
+                    ios={ios}
+                    md={md}
+                    icon={icon}
+                  />
+                  <IonLabel>{tabRoute.title}</IonLabel>
+                </IonTabButton>
+              );
+            })}
           </IonTabBar>
         </IonTabs>
       </IonPage>

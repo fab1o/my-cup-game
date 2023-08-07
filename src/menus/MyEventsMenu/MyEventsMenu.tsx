@@ -19,7 +19,7 @@ const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId, defaultDisabled 
   return (
     <IonMenu menuId="MyEventsMenu" side="start" contentId={contentId} disabled={defaultDisabled}>
       <IonHeader>
-        <IonToolbar color="tertiary">
+        <IonToolbar color="purple">
           <IonTitle>My Events</IonTitle>
         </IonToolbar>
       </IonHeader>

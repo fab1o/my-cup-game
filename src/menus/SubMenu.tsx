@@ -1,10 +1,10 @@
 import { IonMenuToggle, IonIcon, IonLabel, IonItem } from '@ionic/react';
 import { useLocation } from 'react-router';
 
-import { Route } from '../Routes';
+import { Route, IMenuRoutes } from '../Routes';
 
 interface SubMenuProps {
-  menuRoute: Array<Route>;
+  menuRoute: IMenuRoutes;
   menu: string;
   hidden?: boolean;
   sport?: string;
@@ -13,23 +13,28 @@ interface SubMenuProps {
 const SubMenu: React.FC<SubMenuProps> = ({ menuRoute, menu, sport, hidden = false }) => {
   const location = useLocation();
 
+  const menuRouteNames = Object.keys(menuRoute);
+
   return (
     <>
-      {menuRoute.map((route) => {
-        const label = sport ? route.name : route.title;
+      {menuRouteNames.map((name: string) => {
+        const route = menuRoute[name];
 
+        const label = sport ? name : route.title;
         const routerLink = route.href.replace('<sport>', sport as string);
 
-        const className = sport
-          ? location.pathname.includes(`/${sport}/${route.name}`)
-            ? 'selected'
-            : ''
-          : location.pathname.includes(`/${route.name}`)
-          ? 'selected'
-          : '';
+        const isSelected = sport
+          ? location.pathname.includes(`/${sport}/${name}`)
+          : location.pathname.includes(`/${name}`);
+
+        const className = isSelected ? 'selected' : '';
+
+        const icon = isSelected ? route.activeIcon : undefined;
+        const ios = isSelected ? undefined : route.ios;
+        const md = isSelected ? undefined : route.md;
 
         return (
-          <IonMenuToggle menu={menu} hidden={hidden} key={route.name} autoHide={false}>
+          <IonMenuToggle menu={menu} hidden={hidden} key={name} autoHide={false}>
             <IonItem
               hidden={hidden}
               className={className}
@@ -39,7 +44,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ menuRoute, menu, sport, hidden = fals
               detail={true}
               style={route.itemStyle}
             >
-              <IonIcon slot="start" ios={route.ios} md={route.md} />
+              <IonIcon slot="start" ios={ios} md={md} icon={icon} />
               <IonLabel style={route.labelStyle}>{label}</IonLabel>
             </IonItem>
           </IonMenuToggle>
