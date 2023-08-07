@@ -1,25 +1,9 @@
-import {
-  medalOutline,
-  medalSharp,
-  trophyOutline,
-  trophySharp,
-  peopleCircleOutline,
-  peopleCircleSharp,
-  fitnessOutline,
-  fitnessSharp,
-  balloonOutline,
-  balloonSharp,
-  peopleCircle,
-  trophy,
-  medal,
-  fitness,
-  balloon,
-} from 'ionicons/icons';
+import { eventTypes } from './eventTypes';
 
-export interface MenuItemConfig {
-  title: string;
-  href: string;
+import { sports } from './sports';
 
+export interface IMenuItem {
+  name: string;
   ios?: string;
   md?: string;
   activeIcon?: string;
@@ -29,106 +13,93 @@ export interface MenuItemConfig {
   labelStyle?: {
     [key: string]: any;
   };
+  title: string;
+  href: string;
+  sport?: string;
 }
 
-export interface MenuConfig {
-  [name: string]: MenuItemConfig;
+export interface IFindEventsMenu {
+  sport: string;
+  menuItems: Array<IMenuItem>;
 }
 
-export const myEventsMenuConfig: MenuConfig = {
-  Pickups: {
-    ios: peopleCircleOutline,
-    md: peopleCircleSharp,
-    activeIcon: peopleCircle,
-    title: 'My Pick-up Games',
-    href: '/MyEvents/Pickups',
-  },
-  Leagues: {
-    ios: trophyOutline,
-    md: trophySharp,
-    activeIcon: trophy,
-    title: 'My Leagues',
-    href: '/MyEvents/Leagues',
-  },
-  Tournaments: {
-    ios: medalOutline,
-    md: medalSharp,
-    activeIcon: medal,
-    title: 'My Tournaments',
-    href: '/MyEvents/Tournaments',
-  },
-  Clinics: {
-    ios: fitnessOutline,
-    md: fitnessSharp,
-    activeIcon: fitness,
-    title: 'My Clinics',
-    href: '/MyEvents/Clinics',
-  },
-  Parties: {
-    ios: balloonOutline,
-    md: balloonSharp,
-    activeIcon: balloon,
-    title: 'My Parties',
-    href: '/MyEvents/Parties',
-  },
-};
+export const myEventsMenuItems = eventTypes.map<IMenuItem>((eventType) => ({
+  name: eventType.name,
+  ios: eventType.ios,
+  md: eventType.md,
+  activeIcon: eventType.activeIcon,
+  title: `My ${eventType.title}`,
+  href: `/MyEvents/${eventType.name}`,
+}));
 
-export const findEventsMenuConfig: MenuConfig = {
-  Pickups: {
-    ios: peopleCircleOutline,
-    md: peopleCircleSharp,
-    activeIcon: peopleCircle,
-    title: 'Pick-up Games',
-    href: '/FindEvents/<sport>/Pickups',
-  },
-  Leagues: {
-    ios: trophyOutline,
-    md: trophySharp,
-    activeIcon: trophy,
-    title: 'Leagues',
-    href: '/FindEvents/<sport>/Leagues',
-  },
-  Tournaments: {
-    ios: medalOutline,
-    md: medalSharp,
-    activeIcon: medal,
-    title: 'Tournaments',
-    href: '/FindEvents/<sport>/Tournaments',
-  },
-  Clinics: {
-    ios: fitnessOutline,
-    md: fitnessSharp,
-    activeIcon: fitness,
-    title: 'Clinics',
-    href: '/FindEvents/<sport>/Clinics',
-  },
-};
+export const findEventsMenuItems = sports.map<IFindEventsMenu>((sport) => ({
+  sport,
+  menuItems: eventTypes.map<IMenuItem>((eventType) => ({
+    name: eventType.name,
+    ios: eventType.ios,
+    md: eventType.md,
+    activeIcon: eventType.activeIcon,
+    title: eventType.title,
+    href: `/FindEvents/${sport}/${eventType.name}`,
+    sport,
+  })),
+}));
 
-export const findEventsEspecialMenuConfig: MenuConfig = {
-  Parties: {
-    ios: balloonOutline,
-    md: balloonSharp,
-    activeIcon: balloon,
-    title: 'Parties',
-    href: '/FindEvents/Parties',
-    labelStyle: { fontWeight: 'bold' },
-    itemStyle: {
-      borderTopWidth: 1,
-      borderTopStyle: 'solid',
-      borderTopColor: 'var(--color)',
-    },
-  },
-};
+// export const findEventsMenuConfiga = new Map<string, MenuItemConfig>();
+// findEventsMenuConfig.set('Pickups', {
+//   ios: peopleCircleOutline,
+//   md: peopleCircleSharp,
+//   activeIcon: peopleCircle,
+//   title: 'Pick-up Games',
+//   href: '/FindEvents/<sport>/Pickups',
+// });
+// findEventsMenuConfig.set('Leagues', {
+//   ios: trophyOutline,
+//   md: trophySharp,
+//   activeIcon: trophy,
+//   title: 'Leagues',
+//   href: '/FindEvents/<sport>/Leagues',
+// });
+// findEventsMenuConfig.set('Tournaments', {
+//   ios: medalOutline,
+//   md: medalSharp,
+//   activeIcon: medal,
+//   title: 'Tournaments',
+//   href: '/FindEvents/<sport>/Tournaments',
+// });
+// findEventsMenuConfig.set('Clinics', {
+//   ios: fitnessOutline,
+//   md: fitnessSharp,
+//   activeIcon: fitness,
+//   title: 'Clinics',
+//   href: '/FindEvents/<sport>/Clinics',
+// });
 
-export const myEventsEspecialMenuConfig: MenuConfig = {
-  Events: {
-    title: 'All My Events',
-    href: '/MyEvents/Events',
-    labelStyle: { fontWeight: 'bold' },
-    itemStyle: {
-      borderTopWidth: 1,
-      borderTopStyle: 'solid',
-      borderTopColor: 'var(--color)',
-    },
-  },
-};
+// export const findEventsEspecialMenuConfig: MenuConfig = {
+//   Parties: {
+//     ios: balloonOutline,
+//     md: balloonSharp,
+//     activeIcon: balloon,
+//     title: 'Parties',
+//     href: '/FindEvents/Parties',
+//     labelStyle: { fontWeight: 'bold' },
+//     itemStyle: {
+//       borderTopWidth: 1,
+//       borderTopStyle: 'solid',
+//       borderTopColor: 'var(--color)',
+//     },
+//   },
+// };
+
+// export const myEventsEspecialMenuConfig: MenuConfig = {
+//   Events: {
+//     title: 'All My Events',
+//     href: '/MyEvents/Events',
+//     labelStyle: { fontWeight: 'bold' },
+//     itemStyle: {
+//       borderTopWidth: 1,
+//       borderTopStyle: 'solid',
+//       borderTopColor: 'var(--color)',
+//     },
+//   },
+// };

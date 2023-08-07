@@ -1,56 +1,46 @@
-import { IonMenuToggle, IonIcon, IonLabel, IonItem } from '@ionic/react';
+import { IonMenuToggle, IonIcon, IonLabel, IonItem, IonList } from '@ionic/react';
 import { useLocation } from 'react-router';
 
-import { MenuConfig } from '../configs/menus';
+import { IMenuItem } from '../configs/menus';
 
 interface SubMenuProps {
-  menuConfig: MenuConfig;
-  menu: string;
-  hidden?: boolean;
-  sport?: string;
+  name: string;
+  menuItems: Array<IMenuItem>;
+  slot?: string;
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({ menuConfig, menu, sport, hidden = false }) => {
+const SubMenu: React.FC<SubMenuProps> = ({ name, menuItems, slot = '' }) => {
   const location = useLocation();
 
-  const menuRouteNames = Object.keys(menuConfig);
-
   return (
-    <>
-      {menuRouteNames.map((name: string) => {
-        const route = menuConfig[name];
+    <IonList slot={slot}>
+      {menuItems.map((menuItem) => {
+        const isSelected = menuItem.sport
+          ? location.pathname.endsWith(`/${menuItem.sport}/${menuItem.name}`)
+          : location.pathname.endsWith(`/${menuItem.name}`);
 
-        const label = sport ? name : route.title;
-        const routerLink = route.href.replace('<sport>', sport as string);
-
-        const isSelected = sport
-          ? location.pathname.includes(`/${sport}/${name}`)
-          : location.pathname.includes(`/${name}`);
-
-        const className = isSelected ? 'selected' : '';
-
-        const icon = isSelected ? route.activeIcon : undefined;
-        const ios = isSelected ? undefined : route.ios;
-        const md = isSelected ? undefined : route.md;
+        const className = isSelected ? 'selected' : undefined;
+        const icon = isSelected ? menuItem.activeIcon : undefined;
+        const ios = isSelected ? undefined : menuItem.ios;
+        const md = isSelected ? undefined : menuItem.md;
 
         return (
-          <IonMenuToggle menu={menu} hidden={hidden} key={name} autoHide={false}>
+          <IonMenuToggle menu={name} key={menuItem.name} autoHide={false}>
             <IonItem
-              hidden={hidden}
               className={className}
-              routerLink={routerLink}
+              routerLink={menuItem.href}
               routerDirection="none"
               lines="full"
               detail={true}
-              style={route.itemStyle}
+              style={menuItem.itemStyle}
             >
               <IonIcon slot="start" ios={ios} md={md} icon={icon} />
-              <IonLabel style={route.labelStyle}>{label}</IonLabel>
+              <IonLabel style={menuItem.labelStyle}>{menuItem.title}</IonLabel>
             </IonItem>
           </IonMenuToggle>
         );
       })}
-    </>
+    </IonList>
   );
 };
 

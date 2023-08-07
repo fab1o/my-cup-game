@@ -4,15 +4,12 @@ import {
   IonTitle,
   IonToolbar,
   IonMenu,
-  IonItemGroup,
   IonAccordionGroup,
 } from '@ionic/react';
 
-import { findEventsEspecialMenuConfig } from '../../configs/menus';
+import { findEventsMenuItems } from '../../configs/menus';
 
-import SubMenu from '../SubMenu';
-
-import { Sports, defaultSport } from './Sports';
+import { DEFAULT_SPORT } from '../../configs/sports';
 
 import FindEventsSubMenu from './FindEventsSubMenu';
 
@@ -38,14 +35,11 @@ const FindEventsMenu: React.FC<FindEventsMenuProps> = ({
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-no-padding">
-        <IonAccordionGroup value={defaultSport}>
-          {Sports.map((sport) => (
-            <FindEventsSubMenu menu="FindEventsMenu" key={sport} sport={sport} />
+        <IonAccordionGroup value={DEFAULT_SPORT}>
+          {findEventsMenuItems.map((menuItem) => (
+            <FindEventsSubMenu name="FindEventsMenu" menuItems={menuItem.menuItems} sport={menuItem.sport} key={menuItem.sport} />
           ))}
         </IonAccordionGroup>
-        <IonItemGroup>
-          <SubMenu menu="FindEventsMenu" menuConfig={findEventsEspecialMenuConfig} />
-        </IonItemGroup>
       </IonContent>
     </IonMenu>
   );

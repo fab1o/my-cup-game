@@ -50,13 +50,8 @@ const AppContainer: React.FC = () => {
       <IonPage id="main-content">
         <IonTabs onIonTabsDidChange={(e) => handleTabClick(e.detail.tab)}>
           <IonRouterOutlet>
-            {routes.map((route) => (
-              <Route
-                exact={route.exact}
-                key={route.name}
-                path={route.href}
-                component={route.page}
-              />
+            {routes.map(({ exact, name, href, component }) => (
+              <Route exact={exact} key={name} path={href} component={component} />
             ))}
             <Route exact path="/">
               <Redirect to={defaultHref} />

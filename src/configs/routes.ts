@@ -7,7 +7,7 @@ interface RouteConfig {
   name: string;
   href: string;
   exact: boolean;
-  page: React.FC;
+  component: React.FC;
 }
 
 export const routes: Array<RouteConfig> = [
@@ -15,24 +15,24 @@ export const routes: Array<RouteConfig> = [
     name: 'MyEvents',
     href: '/MyEvents',
     exact: false,
-    page: MyEvents,
+    component: MyEvents,
   },
   {
     name: 'FindEvents',
     href: '/FindEvents',
     exact: false,
-    page: FindEvents,
+    component: FindEvents,
   },
   {
     name: 'HostEvent',
     href: '/HostEvent',
     exact: false,
-    page: HostEvent,
+    component: HostEvent,
   },
   {
     name: 'Settings',
     href: '/Settings',
     exact: false,
-    page: Settings,
+    component: Settings,
   },
 ];
