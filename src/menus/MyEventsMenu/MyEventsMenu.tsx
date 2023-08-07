@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 
 import SubMenu from '../SubMenu';
-import { MyEventsEspecialMenuRoutes, MyEventsMenuRoutes } from '../../Routes';
+import { myEventsMenuConfig, myEventsEspecialMenuConfig } from '../../configs/menus';
 
 interface MyEventsMenuProps {
   contentId: string;
@@ -17,7 +17,12 @@ interface MyEventsMenuProps {
 
 const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId, defaultDisabled }) => {
   return (
-    <IonMenu menuId="MyEventsMenu" side="start" contentId={contentId} disabled={defaultDisabled}>
+    <IonMenu
+      menuId="MyEventsMenu"
+      side="start"
+      contentId={contentId}
+      disabled={defaultDisabled}
+    >
       <IonHeader>
         <IonToolbar color="purple">
           <IonTitle>My Events</IonTitle>
@@ -25,8 +30,8 @@ const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId, defaultDisabled 
       </IonHeader>
       <IonContent className="ion-no-padding">
         <IonList>
-          <SubMenu menu="MyEventsMenu" menuRoute={MyEventsMenuRoutes} />
-          <SubMenu menu="MyEventsMenu" menuRoute={MyEventsEspecialMenuRoutes} />
+          <SubMenu menu="MyEventsMenu" menuConfig={myEventsMenuConfig} />
+          <SubMenu menu="MyEventsMenu" menuConfig={myEventsEspecialMenuConfig} />
         </IonList>
       </IonContent>
     </IonMenu>

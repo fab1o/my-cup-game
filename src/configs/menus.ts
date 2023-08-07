@@ -7,20 +7,8 @@ import {
   peopleCircleSharp,
   fitnessOutline,
   fitnessSharp,
-  accessibilityOutline,
-  accessibilitySharp,
-  searchOutline,
-  searchSharp,
-  addCircleOutline,
-  addCircleSharp,
-  settingsOutline,
-  settingsSharp,
   balloonOutline,
   balloonSharp,
-  accessibility,
-  search,
-  addCircle,
-  settings,
   peopleCircle,
   trophy,
   medal,
@@ -28,17 +16,13 @@ import {
   balloon,
 } from 'ionicons/icons';
 
-import MyEvents from './pages/MyEvents/MyEvents';
-import FindEvents from './pages/FindEvents/FindEvents';
-import Settings from './pages/Settings/Settings';
-import HostEvent from './pages/HostEvent/HostEvent';
-
-export interface Route {
+export interface MenuItemConfig {
   title: string;
+  href: string;
+
   ios?: string;
   md?: string;
   activeIcon?: string;
-  href: string;
   itemStyle?: {
     [key: string]: any;
   };
@@ -47,57 +31,11 @@ export interface Route {
   };
 }
 
-interface ITabRoutes {
-  [name: string]: TabRoute;
+export interface MenuConfig {
+  [name: string]: MenuItemConfig;
 }
 
-interface TabRoute extends Route {
-  page: React.FC;
-  menu?: string;
-}
-
-export const TabRoutes: ITabRoutes = {
-  FindEvents: {
-    title: 'Find Events',
-    ios: searchOutline,
-    md: searchSharp,
-    activeIcon: search,
-    href: '/FindEvents',
-    page: FindEvents,
-    menu: 'FindEventsMenu',
-  },
-  MyEvents: {
-    title: 'My Events',
-    ios: accessibilityOutline,
-    md: accessibilitySharp,
-    activeIcon: accessibility,
-    href: '/MyEvents',
-    page: MyEvents,
-    menu: 'MyEventsMenu',
-  },
-  HostEvent: {
-    title: 'Host Event',
-    ios: addCircleOutline,
-    md: addCircleSharp,
-    activeIcon: addCircle,
-    href: '/HostEvent',
-    page: HostEvent,
-  },
-  Settings: {
-    title: 'Settings',
-    ios: settingsOutline,
-    md: settingsSharp,
-    activeIcon: settings,
-    href: '/Settings',
-    page: Settings,
-  },
-};
-
-export interface IMenuRoutes {
-  [name: string]: Route;
-}
-
-export const MyEventsMenuRoutes: IMenuRoutes = {
+export const myEventsMenuConfig: MenuConfig = {
   Pickups: {
     ios: peopleCircleOutline,
     md: peopleCircleSharp,
@@ -135,7 +73,7 @@ export const MyEventsMenuRoutes: IMenuRoutes = {
   },
 };
 
-export const FindEventsMenuRoutes: IMenuRoutes = {
+export const findEventsMenuConfig: MenuConfig = {
   Pickups: {
     ios: peopleCircleOutline,
     md: peopleCircleSharp,
@@ -166,7 +104,7 @@ export const FindEventsMenuRoutes: IMenuRoutes = {
   },
 };
 
-export const FindEventsEspecialMenuRoutes: IMenuRoutes = {
+export const findEventsEspecialMenuConfig: MenuConfig = {
   Parties: {
     ios: balloonOutline,
     md: balloonSharp,
@@ -182,7 +120,7 @@ export const FindEventsEspecialMenuRoutes: IMenuRoutes = {
   },
 };
 
-export const MyEventsEspecialMenuRoutes: IMenuRoutes = {
+export const myEventsEspecialMenuConfig: MenuConfig = {
   Events: {
     title: 'All My Events',
     href: '/MyEvents/Events',

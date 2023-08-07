@@ -5,38 +5,46 @@ import {
   IonToolbar,
   IonMenu,
   IonItemGroup,
+  IonAccordionGroup,
 } from '@ionic/react';
 
-import { Sports } from '../Sports';
+import { findEventsEspecialMenuConfig } from '../../configs/menus';
+
+import SubMenu from '../SubMenu';
+
+import { Sports, defaultSport } from './Sports';
 
 import FindEventsSubMenu from './FindEventsSubMenu';
-import SubMenu from '../SubMenu';
-import { FindEventsEspecialMenuRoutes } from '../../Routes';
 
 interface FindEventsMenuProps {
   contentId: string;
   defaultDisabled: boolean;
 }
 
-const FindEventsMenu: React.FC<FindEventsMenuProps> = ({ contentId, defaultDisabled }) => {
+const FindEventsMenu: React.FC<FindEventsMenuProps> = ({
+  contentId,
+  defaultDisabled,
+}) => {
   return (
-    <IonMenu menuId="FindEventsMenu" side="start" contentId={contentId} disabled={defaultDisabled}>
+    <IonMenu
+      menuId="FindEventsMenu"
+      side="start"
+      contentId={contentId}
+      disabled={defaultDisabled}
+    >
       <IonHeader>
         <IonToolbar color="purple">
           <IonTitle>Find Events</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-no-padding">
-        {Sports.map((sport, i) => (
-          <FindEventsSubMenu
-            menu="FindEventsMenu"
-            key={sport}
-            sport={sport}
-            hiddenByDefault={i !== 0}
-          />
-        ))}
+        <IonAccordionGroup value={defaultSport}>
+          {Sports.map((sport) => (
+            <FindEventsSubMenu menu="FindEventsMenu" key={sport} sport={sport} />
+          ))}
+        </IonAccordionGroup>
         <IonItemGroup>
-          <SubMenu menu="FindEventsMenu" menuRoute={FindEventsEspecialMenuRoutes} />
+          <SubMenu menu="FindEventsMenu" menuConfig={findEventsEspecialMenuConfig} />
         </IonItemGroup>
       </IonContent>
     </IonMenu>

@@ -1,24 +1,24 @@
 import { IonMenuToggle, IonIcon, IonLabel, IonItem } from '@ionic/react';
 import { useLocation } from 'react-router';
 
-import { Route, IMenuRoutes } from '../Routes';
+import { MenuConfig } from '../configs/menus';
 
 interface SubMenuProps {
-  menuRoute: IMenuRoutes;
+  menuConfig: MenuConfig;
   menu: string;
   hidden?: boolean;
   sport?: string;
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({ menuRoute, menu, sport, hidden = false }) => {
+const SubMenu: React.FC<SubMenuProps> = ({ menuConfig, menu, sport, hidden = false }) => {
   const location = useLocation();
 
-  const menuRouteNames = Object.keys(menuRoute);
+  const menuRouteNames = Object.keys(menuConfig);
 
   return (
     <>
       {menuRouteNames.map((name: string) => {
-        const route = menuRoute[name];
+        const route = menuConfig[name];
 
         const label = sport ? name : route.title;
         const routerLink = route.href.replace('<sport>', sport as string);

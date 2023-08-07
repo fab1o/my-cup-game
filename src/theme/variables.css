@@ -68,12 +68,12 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-medium-tint: #9d9fa6;
 
   /** light **/
-  --ion-color-light: #f4f5f8;
+  /* --ion-color-light: #f4f5f8;
   --ion-color-light-rgb: 244, 245, 248;
   --ion-color-light-contrast: #000000;
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
-  --ion-color-light-tint: #f5f6f9;
+  --ion-color-light-tint: #f5f6f9; */
 
   /** purple **/
   --ion-color-purple: #7751d2;
@@ -82,6 +82,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-purple-contrast-rgb: 255, 255, 255;
   --ion-color-purple-shade: #6947b9;
   --ion-color-purple-tint: #8562d7;
+
+  /** purple-light **/
+	--ion-color-light: #cacad3;
+	--ion-color-light-rgb: 202,202,211;
+	--ion-color-light-contrast: #000000;
+	--ion-color-light-contrast-rgb: 0,0,0;
+	--ion-color-light-shade: #b2b2ba;
+	--ion-color-light-tint: #cfcfd7;
 
   --ion-color-step-50: #eceaf0;
   --ion-color-step-100: #e6e2ef;

@@ -14,45 +14,26 @@ import {
 import { useState } from 'react';
 import { Redirect, Route, useLocation } from 'react-router';
 
-import { TabRoutes } from './Routes';
+import { routes } from './configs/routes';
+import { tabs, defaultTabName } from './configs/tabs';
+
 import FindEventsMenu from './menus/FindEventsMenu/FindEventsMenu';
 import MyEventsMenu from './menus/MyEventsMenu/MyEventsMenu';
 
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
-/* Theme variables */
-import './theme/variables.css';
-import './theme/floating-tab-bar.css';
-
-import './App.css';
-
 setupIonicReact();
 
-const TabRoutesNames = Object.keys(TabRoutes);
-const defaultTabRouteName = TabRoutesNames[0];
-const defaultHref = TabRoutes[defaultTabRouteName].href;
+const tabNames = Object.keys(tabs);
+const defaultHref = tabs[defaultTabName].href;
 
 const AppContainer: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>(defaultTabRouteName);
+  const [activeTab, setActiveTab] = useState<string>(defaultTabName);
 
   const location = useLocation();
 
+  // fix for issue where menu button disappears
   const isFindsEventsRoute = location.pathname.startsWith(defaultHref) === false;
   const isMyEventsRoute = location.pathname.startsWith(defaultHref) === true;
+  // ***
 
   async function handleTabClick(name?: string) {
     if (name) {
@@ -63,30 +44,28 @@ const AppContainer: React.FC = () => {
 
   return (
     <IonSplitPane when="sm" contentId="main-content">
-      <FindEventsMenu
-        contentId="main-content"
-        defaultDisabled={isFindsEventsRoute}
-      ></FindEventsMenu>
-      <MyEventsMenu
-        contentId="main-content"
-        defaultDisabled={isMyEventsRoute}
-      ></MyEventsMenu>
+      <FindEventsMenu contentId="main-content" defaultDisabled={isFindsEventsRoute} />
+      <MyEventsMenu contentId="main-content" defaultDisabled={isMyEventsRoute} />
 
       <IonPage id="main-content">
         <IonTabs onIonTabsDidChange={(e) => handleTabClick(e.detail.tab)}>
           <IonRouterOutlet>
-            {TabRoutesNames.map((name: string) => {
-              const tabRoute = TabRoutes[name];
-
-              return <Route key={name} path={tabRoute.href} component={tabRoute.page} />;
-            })}
+            {routes.map((route) => (
+              <Route
+                exact={route.exact}
+                key={route.name}
+                path={route.href}
+                component={route.page}
+              />
+            ))}
             <Route exact path="/">
               <Redirect to={defaultHref} />
             </Route>
           </IonRouterOutlet>
+
           <IonTabBar slot="bottom">
-            {TabRoutesNames.map((name: string) => {
-              const tabRoute = TabRoutes[name];
+            {tabNames.map((name: string) => {
+              const tabRoute = tabs[name];
 
               const icon = name === activeTab ? tabRoute.activeIcon : undefined;
               const ios = name === activeTab ? undefined : tabRoute.ios;

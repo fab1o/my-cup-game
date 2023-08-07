@@ -7,13 +7,13 @@ import {
   IonButtons,
   IonMenuButton,
 } from '@ionic/react';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+// import { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router';
 
 import ExploreContainer from '../../components/ExploreContainer';
 
 import './MyEvents.css';
-import { MyEventsMenuRoutes, Route } from '../../Routes';
+// import { MyEventsMenuRoutes, Route } from '../../configs/tabs';
 
 const MyEvents: React.FC = () => {
   // const [route, setRoute] = useState<Route>();
