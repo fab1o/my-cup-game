@@ -10,7 +10,7 @@ import {
 
 import ExploreContainer from '../../components/ExploreContainer';
 
-const MyEvents: React.FC = () => {
+export const MyEvents: React.FC = () => {
   return (
     <IonPage id="my-events-content">
       <IonHeader>
@@ -27,5 +27,3 @@ const MyEvents: React.FC = () => {
     </IonPage>
   );
 };
-
-export default MyEvents;

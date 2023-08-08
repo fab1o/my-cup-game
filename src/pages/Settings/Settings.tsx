@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 
 import ExploreContainer from '../../components/ExploreContainer';
 
-const Settings: React.FC = () => {
+export const Settings: React.FC = () => {
   return (
     <IonPage id="settings-content">
       <IonHeader>
@@ -16,5 +16,3 @@ const Settings: React.FC = () => {
     </IonPage>
   );
 };
-
-export default Settings;

@@ -1,12 +1,15 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 
 import ExploreContainer from '../../../../components/ExploreContainer';
 
-const Settings: React.FC = () => {
+export const SoccerLeagues: React.FC = () => {
   return (
-    <IonPage id="settings-content">
+    <IonPage id="soccer-leagues-content">
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton></IonMenuButton>
+          </IonButtons>
           <IonTitle>Soccer Leagues</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -16,5 +19,3 @@ const Settings: React.FC = () => {
     </IonPage>
   );
 };
-
-export default Settings;
