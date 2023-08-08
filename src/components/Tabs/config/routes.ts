@@ -1,4 +1,11 @@
-import { MyEvents, FindEvents, Settings, HostEvent, SoccerLeagues } from '../../../pages';
+import {
+  MyEvents,
+  FindEvents,
+  Settings,
+  HostEvent,
+  SoccerLeagues,
+  MyPickupGames,
+} from '../../../pages';
 
 interface RouteConfig {
   name: string;
@@ -9,9 +16,15 @@ interface RouteConfig {
 
 export const routes: Array<RouteConfig> = [
   {
+    name: 'My Pickup Games',
+    href: '/MyEvents/Pickups',
+    exact: true,
+    page: MyPickupGames,
+  },
+  {
     name: 'MyEvents',
     href: '/MyEvents',
-    exact: false,
+    exact: true,
     page: MyEvents,
   },
   {
