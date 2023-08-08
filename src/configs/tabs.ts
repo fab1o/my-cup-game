@@ -13,53 +13,83 @@ import {
   settings,
 } from 'ionicons/icons';
 
-interface TabConfig {
+interface Tab {
+  name: string;
   title: string;
   href: string;
 
   ios?: string;
   md?: string;
   activeIcon?: string;
-  menu?: string;
+
+  menuId?: string;
 }
 
-interface TabsConfig {
-  [name: string]: TabConfig;
-}
-
-export const tabs: TabsConfig = {
-  MyEvents: {
+const tabs: Array<Tab> = [
+  {
+    name: 'MyEvents',
     title: 'My Events',
+    href: '/MyEvents',
+
     ios: accessibilityOutline,
     md: accessibilitySharp,
     activeIcon: accessibility,
-    href: '/MyEvents',
 
-    menu: 'MyEventsMenu',
+    menuId: 'MyEventsMenu',
   },
-  FindEvents: {
+  {
+    name: 'FindEvents',
     title: 'Find Events',
+    href: '/FindEvents',
+
     ios: searchOutline,
     md: searchSharp,
     activeIcon: search,
-    href: '/FindEvents',
 
-    menu: 'FindEventsMenu',
+    menuId: 'FindEventsMenu',
   },
-  HostEvent: {
+  {
+    name: 'HostEvent',
     title: 'Host Event',
+    href: '/HostEvent',
+
     ios: addCircleOutline,
     md: addCircleSharp,
     activeIcon: addCircle,
-    href: '/HostEvent',
   },
-  Settings: {
+  {
+    name: 'Settings',
     title: 'Settings',
+    href: '/Settings',
+
     ios: settingsOutline,
     md: settingsSharp,
     activeIcon: settings,
-    href: '/Settings',
   },
+];
+
+interface ITabManager {
+  tabs: Array<Tab>;
+
+  myEvents: Tab;
+  findEvents: Tab;
+  hostEvent: Tab;
+  settings: Tab;
+
+  getTab(name?: string): Tab | undefined;
+}
+
+export const tabManager: ITabManager = {
+  tabs,
+
+  myEvents: tabs[0],
+  findEvents: tabs[1],
+  hostEvent: tabs[2],
+  settings: tabs[3],
+
+  getTab: (name?: string) => {
+    return tabs.find((tab) => tab.name === name)
+  }
 };
 
-export const defaultTabName = 'FindEvents';
+export const DEFAULT_TAB = tabManager.myEvents;

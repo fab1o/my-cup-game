@@ -1,27 +1,27 @@
-import { IonLabel, IonAccordion, IonItem, IonList } from '@ionic/react';
+import { IonLabel, IonAccordion, IonItem } from '@ionic/react';
 
-import { IMenuItem } from '../../configs/menus';
+import { ICategoryMenuItem } from '../../configs/menus';
 
 import SubMenu from '../SubMenu';
 
 interface FindEventsSubMenuProps {
   name: string;
-  sport: string;
-  menuItems: Array<IMenuItem>;
+  category: string;
+  menuItems?: Array<ICategoryMenuItem>;
 }
 
 const FindEventsSubMenu: React.FC<FindEventsSubMenuProps> = ({
   name,
-  sport,
+  category,
   menuItems,
 }) => {
   return (
-    <IonAccordion key={sport} value={sport}>
+    <IonAccordion key={category} value={category}>
       <IonItem slot="header" color="light">
-        <IonLabel>{sport}</IonLabel>
+        <IonLabel>{category}</IonLabel>
       </IonItem>
 
-      <SubMenu name={name} menuItems={menuItems} slot="content" />
+      <SubMenu<ICategoryMenuItem> name={name} menuItems={menuItems} slot="content" />
     </IonAccordion>
   );
 };

@@ -1,36 +1,26 @@
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonMenu,
-  IonList,
-} from '@ionic/react';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonMenu } from '@ionic/react';
+
+import { IMenuItem } from '../../configs/menus';
+import { myEventsMenu } from '../../configs/menus/myEventsMenu';
 
 import SubMenu from '../SubMenu';
-
-import { myEventsMenuItems } from '../../configs/menus';
-
 interface MyEventsMenuProps {
   contentId: string;
-  defaultDisabled: boolean;
 }
 
-const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId, defaultDisabled }) => {
+const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId }) => {
   return (
-    <IonMenu
-      menuId="MyEventsMenu"
-      side="start"
-      contentId={contentId}
-      disabled={defaultDisabled}
-    >
+    <IonMenu menuId={myEventsMenu.menuId} side="start" contentId={contentId}>
       <IonHeader>
         <IonToolbar color="purple">
-          <IonTitle>My Events</IonTitle>
+          <IonTitle>{myEventsMenu.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-no-padding">
-        <SubMenu name="MyEventsMenu" menuItems={myEventsMenuItems} />
+        <SubMenu<IMenuItem>
+          name={myEventsMenu.menuId}
+          menuItems={myEventsMenu.menuItems}
+        />
       </IonContent>
     </IonMenu>
   );

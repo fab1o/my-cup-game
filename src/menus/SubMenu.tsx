@@ -1,22 +1,23 @@
-import { IonMenuToggle, IonIcon, IonLabel, IonItem, IonList } from '@ionic/react';
 import { useLocation } from 'react-router';
 
-import { IMenuItem } from '../configs/menus';
+import { IonMenuToggle, IonIcon, IonLabel, IonItem, IonList } from '@ionic/react';
+import { ICategoryMenuItem, IMenuItem } from '../configs/menus';
 
-interface SubMenuProps {
+interface SubMenuProps<T extends IMenuItem | ICategoryMenuItem> {
   name: string;
-  menuItems: Array<IMenuItem>;
+  menuItems?: Array<T>;
   slot?: string;
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({ name, menuItems, slot = '' }) => {
+const SubMenu: <T extends IMenuItem | ICategoryMenuItem>(props: SubMenuProps<T>) => React.ReactElement<SubMenuProps<T>> = (props) => {
+  const { name, menuItems, slot = '' } = props;
   const location = useLocation();
 
   return (
     <IonList slot={slot}>
-      {menuItems.map((menuItem) => {
-        const isSelected = menuItem.sport
-          ? location.pathname.endsWith(`/${menuItem.sport}/${menuItem.name}`)
+      {menuItems?.map((menuItem) => {
+        const isSelected = 'category' in menuItem && menuItem.category
+          ? location.pathname.endsWith(`/${menuItem.category}/${menuItem.name}`)
           : location.pathname.endsWith(`/${menuItem.name}`);
 
         const className = isSelected ? 'selected' : undefined;
