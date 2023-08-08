@@ -10,8 +10,8 @@ import {
   IonTabs,
 } from '@ionic/react';
 
-import { routes } from '../configs/routes';
-import { tabManager, DEFAULT_TAB } from '../configs/tabs';
+import { routes } from './config/routes';
+import { tabManager, DEFAULT_TAB } from './config/tabManager';
 
 setupIonicReact();
 
@@ -42,11 +42,7 @@ const AppContainer: React.FC = () => {
 
       <IonTabBar slot="bottom">
         {tabManager.tabs.map((tab) => {
-          const isSelected = location.pathname.startsWith(tab.href);
-
-          const icon = isSelected ? tab.activeIcon : undefined;
-          const ios = isSelected ? undefined : tab.ios;
-          const md = isSelected ? undefined : tab.md;
+          const icons = tabManager.getIcons(tab, location.pathname);
 
           return (
             <IonTabButton
@@ -59,9 +55,9 @@ const AppContainer: React.FC = () => {
                 key={tab.name}
                 aria-hidden="true"
                 aria-label={tab.name}
-                ios={ios}
-                md={md}
-                icon={icon}
+                ios={icons.ios}
+                md={icons.md}
+                icon={icons.activeIcon}
               />
               <IonLabel>{tab.title}</IonLabel>
             </IonTabButton>

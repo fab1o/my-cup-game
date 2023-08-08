@@ -7,8 +7,8 @@ import {
   IonAccordionGroup,
 } from '@ionic/react';
 
-import { findEventsMenu } from '../../configs/menus/findEventsMenu';
-import { DEFAULT_CATEGORY } from '../../configs/menus/categories';
+import { findEventsMenu } from './config/findEventsMenu';
+import { DEFAULT_CATEGORY } from '../config/categories';
 
 import FindEventsSubMenu from './FindEventsSubMenu';
 

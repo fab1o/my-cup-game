@@ -1,8 +1,8 @@
 import { IonLabel, IonAccordion, IonItem } from '@ionic/react';
 
-import { ICategoryMenuItem } from '../../configs/menus';
+import { ICategoryMenuItem } from '../config';
 
-import SubMenu from '../SubMenu';
+import SubMenu from '../SubMenu/SubMenu';
 
 interface FindEventsSubMenuProps {
   name: string;

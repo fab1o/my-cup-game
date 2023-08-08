@@ -1,7 +1,7 @@
-import MyEvents from '../pages/MyEvents/MyEvents';
-import FindEvents from '../pages/FindEvents/FindEvents';
-import Settings from '../pages/Settings/Settings';
-import HostEvent from '../pages/HostEvent/HostEvent';
+import MyEvents from '../../../pages/MyEvents/MyEvents';
+import FindEvents from '../../../pages/FindEvents/FindEvents';
+import Settings from '../../../pages/Settings/Settings';
+import HostEvent from '../../../pages/HostEvent/HostEvent';
 import Home from '../pages/Home/Home';
 
 interface RouteConfig {

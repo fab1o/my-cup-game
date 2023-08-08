@@ -20,10 +20,10 @@ import './theme/floating-tab-bar.css';
 
 import './App.css';
 
-import FindEventsMenu from './menus/FindEventsMenu/FindEventsMenu';
-import MyEventsMenu from './menus/MyEventsMenu/MyEventsMenu';
+import FindEventsMenu from './components/FindEventsMenu/FindEventsMenu';
+import MyEventsMenu from './components/MyEventsMenu/MyEventsMenu';
 
-import Tabs from './components/Tabs';
+import Tabs from './components/Tabs/Tabs';
 
 setupIonicReact();
 

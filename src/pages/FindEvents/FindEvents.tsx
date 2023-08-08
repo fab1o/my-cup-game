@@ -10,8 +10,6 @@ import {
 
 import ExploreContainer from '../../components/ExploreContainer';
 
-import './FindEvents.css';
-
 const FindEvents: React.FC = () => {
   return (
     <IonPage id="find-events-content">

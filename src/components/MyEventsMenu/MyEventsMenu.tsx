@@ -1,9 +1,10 @@
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonMenu } from '@ionic/react';
 
-import { IMenuItem } from '../../configs/menus';
-import { myEventsMenu } from '../../configs/menus/myEventsMenu';
+import { IMenuItem } from '../config';
+import { myEventsMenu } from './config/myEventsMenu';
 
-import SubMenu from '../SubMenu';
+import SubMenu from '../SubMenu/SubMenu';
+
 interface MyEventsMenuProps {
   contentId: string;
 }

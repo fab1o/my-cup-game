@@ -2,8 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 
 import ExploreContainer from '../../components/ExploreContainer';
 
-import './HostEvent.css';
-
 const HostEvent: React.FC = () => {
   return (
     <IonPage id="host-event-content">

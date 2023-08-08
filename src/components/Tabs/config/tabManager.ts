@@ -13,15 +13,17 @@ import {
   settings,
 } from 'ionicons/icons';
 
+interface TabIcons {
+  ios?: string;
+  md?: string;
+  activeIcon?: string;
+}
+
 interface Tab {
   name: string;
   title: string;
   href: string;
-
-  ios?: string;
-  md?: string;
-  activeIcon?: string;
-
+  icons: TabIcons;
   menuId?: string;
 }
 
@@ -31,9 +33,11 @@ const tabs: Array<Tab> = [
     title: 'My Events',
     href: '/MyEvents',
 
-    ios: accessibilityOutline,
-    md: accessibilitySharp,
-    activeIcon: accessibility,
+    icons: {
+      ios: accessibilityOutline,
+      md: accessibilitySharp,
+      activeIcon: accessibility,
+    },
 
     menuId: 'MyEventsMenu',
   },
@@ -42,9 +46,11 @@ const tabs: Array<Tab> = [
     title: 'Find Events',
     href: '/FindEvents',
 
-    ios: searchOutline,
-    md: searchSharp,
-    activeIcon: search,
+    icons: {
+      ios: searchOutline,
+      md: searchSharp,
+      activeIcon: search,
+    },
 
     menuId: 'FindEventsMenu',
   },
@@ -53,18 +59,22 @@ const tabs: Array<Tab> = [
     title: 'Host Event',
     href: '/HostEvent',
 
-    ios: addCircleOutline,
-    md: addCircleSharp,
-    activeIcon: addCircle,
+    icons: {
+      ios: addCircleOutline,
+      md: addCircleSharp,
+      activeIcon: addCircle,
+    },
   },
   {
     name: 'Settings',
     title: 'Settings',
     href: '/Settings',
 
-    ios: settingsOutline,
-    md: settingsSharp,
-    activeIcon: settings,
+    icons: {
+      ios: settingsOutline,
+      md: settingsSharp,
+      activeIcon: settings,
+    },
   },
 ];
 
@@ -77,6 +87,7 @@ interface ITabManager {
   settings: Tab;
 
   getTab(name?: string): Tab | undefined;
+  getIcons(tab: Tab, pathname: string): TabIcons;
 }
 
 export const tabManager: ITabManager = {
@@ -87,9 +98,28 @@ export const tabManager: ITabManager = {
   hostEvent: tabs[2],
   settings: tabs[3],
 
-  getTab: (name?: string) => {
-    return tabs.find((tab) => tab.name === name)
-  }
+  getTab(name?: string) {
+    return tabs.find((tab) => tab.name === name);
+  },
+
+  getIcons(tab, pathname) {
+    if (tab === tabManager.myEvents && pathname.endsWith('/')) {
+      return {
+        activeIcon: tab.icons.activeIcon,
+      };
+    }
+
+    if (pathname.startsWith(tab.href)) {
+      return {
+        activeIcon: tab.icons.activeIcon,
+      };
+    }
+
+    return {
+      ios: tab.icons.ios,
+      md: tab.icons.md,
+    };
+  },
 };
 
 export const DEFAULT_TAB = tabManager.myEvents;

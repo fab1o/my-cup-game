@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router';
 
 import { IonMenuToggle, IonIcon, IonLabel, IonItem, IonList } from '@ionic/react';
-import { ICategoryMenuItem, IMenuItem } from '../configs/menus';
+import { ICategoryMenuItem, IMenuItem } from '../config';
 
 interface SubMenuProps<T extends IMenuItem | ICategoryMenuItem> {
   name: string;
@@ -9,16 +9,19 @@ interface SubMenuProps<T extends IMenuItem | ICategoryMenuItem> {
   slot?: string;
 }
 
-const SubMenu: <T extends IMenuItem | ICategoryMenuItem>(props: SubMenuProps<T>) => React.ReactElement<SubMenuProps<T>> = (props) => {
+const SubMenu: <T extends IMenuItem | ICategoryMenuItem>(
+  props: SubMenuProps<T>
+) => React.ReactElement<SubMenuProps<T>> = (props) => {
   const { name, menuItems, slot = '' } = props;
   const location = useLocation();
 
   return (
     <IonList slot={slot}>
       {menuItems?.map((menuItem) => {
-        const isSelected = 'category' in menuItem && menuItem.category
-          ? location.pathname.endsWith(`/${menuItem.category}/${menuItem.name}`)
-          : location.pathname.endsWith(`/${menuItem.name}`);
+        const isSelected =
+          'category' in menuItem && menuItem.category
+            ? location.pathname.endsWith(`/${menuItem.category}/${menuItem.name}`)
+            : location.pathname.endsWith(`/${menuItem.name}`);
 
         const className = isSelected ? 'selected' : undefined;
         const icon = isSelected ? menuItem.activeIcon : undefined;
