@@ -1,12 +1,12 @@
-import { Category, OtherCategory } from './categories';
+import { Category } from './categories';
 
-import { Level } from './level';
+import { ILevel } from './level';
 import { RecurringType } from './recurringType';
 
 export interface Event {
   name: string;
-  category: Category | OtherCategory;
-  level: Level;
+  category: Category;
+  level: ILevel;
   location: string;
   maxCapacity: number;
   price: number;
