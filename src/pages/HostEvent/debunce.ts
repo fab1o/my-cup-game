@@ -128,6 +128,7 @@ function debounce(
     const isInvoking = shouldInvoke(time);
 
     lastArgs = args;
+    // @ts-ignore
     lastThis = this;
     lastCallTime = time;
 
