@@ -13,21 +13,21 @@ import {
   settings,
 } from 'ionicons/icons';
 
-interface TabIcons {
+interface Icons {
   ios?: string;
   md?: string;
   activeIcon?: string;
 }
 
-interface Tab {
+interface Nav {
   name: string;
   title: string;
   href: string;
-  icons: TabIcons;
+  icons: Icons;
   menuId?: string;
 }
 
-const tabs: Array<Tab> = [
+const navs: Array<Nav> = [
   {
     name: 'MyEvents',
     title: 'My Events',
@@ -78,48 +78,48 @@ const tabs: Array<Tab> = [
   },
 ];
 
-interface ITabManager {
-  tabs: Array<Tab>;
+interface IManager {
+  navs: Array<Nav>;
 
-  myEvents: Tab;
-  findEvents: Tab;
-  hostEvent: Tab;
-  settings: Tab;
+  myEvents: Nav;
+  findEvents: Nav;
+  hostEvent: Nav;
+  settings: Nav;
 
-  getTab(name?: string): Tab | undefined;
-  getIcons(tab: Tab, pathname: string): TabIcons;
+  getNav(name?: string): Nav | undefined;
+  getIcons(nav: Nav, pathname: string): Icons;
 }
 
-export const tabManager: ITabManager = {
-  tabs,
+export const navManager: IManager = {
+  navs,
 
-  myEvents: tabs[0],
-  findEvents: tabs[1],
-  hostEvent: tabs[2],
-  settings: tabs[3],
+  myEvents: navs[0],
+  findEvents: navs[1],
+  hostEvent: navs[2],
+  settings: navs[3],
 
-  getTab(name?: string) {
-    return tabs.find((tab) => tab.name === name);
+  getNav(name?: string) {
+    return navs.find((nav) => nav.name === name);
   },
 
-  getIcons(tab, pathname) {
-    if (tab === tabManager.myEvents && pathname.endsWith('/')) {
+  getIcons(nav, pathname) {
+    if (nav === this.myEvents && pathname.endsWith('/')) {
       return {
-        activeIcon: tab.icons.activeIcon,
+        activeIcon: nav.icons.activeIcon,
       };
     }
 
-    if (pathname.startsWith(tab.href)) {
+    if (pathname.startsWith(nav.href)) {
       return {
-        activeIcon: tab.icons.activeIcon,
+        activeIcon: nav.icons.activeIcon,
       };
     }
 
     return {
-      ios: tab.icons.ios,
-      md: tab.icons.md,
+      ios: nav.icons.ios,
+      md: nav.icons.md,
     };
   },
 };
 
-export const DEFAULT_TAB = tabManager.myEvents;
+export const DEFAULT_NAV = navManager.myEvents;

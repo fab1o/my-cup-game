@@ -11,7 +11,9 @@ import {
 import { routes } from '../navigation/routes';
 import { navManager, DEFAULT_NAV } from '../navigation/navManager';
 
-const Tabs: React.FC = () => {
+import './Segments.css';
+
+const Segments: React.FC = () => {
   const location = useLocation();
 
   async function handleTabClick(e: CustomEvent<HTMLIonTabButtonElement>) {
@@ -36,6 +38,15 @@ const Tabs: React.FC = () => {
         </Route>
       </IonRouterOutlet>
 
+      {/* <IonList>
+          <IonItem routerLink="/dashboard/users/1">
+            <IonLabel>User 1</IonLabel>
+          </IonItem>
+          <IonItem routerLink="/dashboard/users/2">
+            <IonLabel>User 2</IonLabel>
+          </IonItem>
+        </IonList> */}
+
       <IonTabBar className="custom" slot="bottom">
         {navManager.navs.map((nav) => {
           const icons = navManager.getIcons(nav, location.pathname);
@@ -51,6 +62,7 @@ const Tabs: React.FC = () => {
               <IonIcon
                 key={nav.name}
                 aria-hidden="true"
+                aria-label={nav.name}
                 ios={icons.ios}
                 md={icons.md}
                 icon={icons.activeIcon}
@@ -63,4 +75,4 @@ const Tabs: React.FC = () => {
   );
 };
 
-export default Tabs;
+export default Segments;

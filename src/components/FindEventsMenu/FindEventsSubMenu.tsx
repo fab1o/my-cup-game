@@ -17,7 +17,7 @@ const FindEventsSubMenu: React.FC<FindEventsSubMenuProps> = ({
 }) => {
   return (
     <IonAccordion key={category} value={category}>
-      <IonItem slot="header" color="light">
+      <IonItem slot="header" color="lightmedium">
         <IonLabel>{category}</IonLabel>
       </IonItem>
 

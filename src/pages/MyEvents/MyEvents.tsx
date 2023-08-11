@@ -16,7 +16,7 @@ export const MyEvents: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton></IonMenuButton>
+            <IonMenuButton color="purple" />
           </IonButtons>
           <IonTitle>My Events</IonTitle>
         </IonToolbar>

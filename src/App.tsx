@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { IonReactRouter } from '@ionic/react-router';
 import { IonApp, IonPage, IonSplitPane, setupIonicReact } from '@ionic/react';
 
@@ -15,19 +17,36 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 /* Theme variables */
-import './theme/variables.css';
-import './theme/floating-tab-bar.css';
-
-import './App.css';
 
 import FindEventsMenu from './components/FindEventsMenu/FindEventsMenu';
 import MyEventsMenu from './components/MyEventsMenu/MyEventsMenu';
 
-import Tabs from './components/Tabs/Tabs';
+import Navigation from './components/navigation/Navigation';
+
+import { usePreferencesDataProvider } from './PreferencesDataContext';
+
+import * as preferenceKeys from './api/capacitor/preferenceKeys';
+
+import './theme/variables.css';
+
+import './App.css';
 
 setupIonicReact();
 
 const App: React.FC = () => {
+  const { getPreference } = usePreferencesDataProvider();
+
+  useEffect(() => {
+    async function checkDark() {
+      const isDark = await getPreference<boolean>(preferenceKeys.DARK);
+      if (isDark != null) {
+        document.body.classList.toggle('dark', isDark);
+      }
+    }
+
+    checkDark();
+  }, []);
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -36,7 +55,7 @@ const App: React.FC = () => {
           <MyEventsMenu contentId="main-content" />
 
           <IonPage id="main-content">
-            <Tabs />
+            <Navigation type="Tabs" />
           </IonPage>
         </IonSplitPane>
       </IonReactRouter>

@@ -78,16 +78,17 @@ export const MyPickupGames: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton></IonMenuButton>
+            <IonMenuButton color="purple" />
           </IonButtons>
-          <IonSegment value="" onIonChange={onChange}>
+          {/* <IonSegment value="" onIonChange={onChange}>
             <IonSegmentButton value="">
-              <IonLabel>Pickups</IonLabel>
+              <IonLabel>My Pickups</IonLabel>
             </IonSegmentButton>
             <IonSegmentButton value="all">
               <IonLabel>All</IonLabel>
             </IonSegmentButton>
-          </IonSegment>
+          </IonSegment> */}
+          <IonTitle>My Pickups</IonTitle>
         </IonToolbar>
       </IonHeader>
 

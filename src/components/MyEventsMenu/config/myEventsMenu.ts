@@ -1,7 +1,7 @@
 import { IMenu, IMenuItem } from '../../config';
 
 import { eventTypes } from '../../config/eventTypes';
-import { tabManager } from '../../Tabs/config/tabManager';
+import { navManager } from '../../navigation/navManager';
 
 const myEventsMenuItems = eventTypes.map<IMenuItem>((eventType) => ({
   name: eventType.name,
@@ -13,7 +13,7 @@ const myEventsMenuItems = eventTypes.map<IMenuItem>((eventType) => ({
 }));
 
 export const myEventsMenu: IMenu<IMenuItem> = {
-  menuId: tabManager.myEvents.menuId as string,
+  menuId: navManager.myEvents.menuId as string,
   title: 'My Events',
   baseHref: '/MyEvents',
   menuItems: myEventsMenuItems,

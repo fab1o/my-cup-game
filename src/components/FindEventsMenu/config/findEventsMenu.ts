@@ -1,8 +1,8 @@
 import { IMenu, ICategoryMenuItem } from '../../config';
 
 import { eventTypes } from '../../config/eventTypes';
-import { categories } from '../../config/categories';
-import { tabManager } from '../../Tabs/config/tabManager';
+import { categories } from '../../../api/models/categories';
+import { navManager } from '../../navigation/navManager';
 
 const findEventsMenuItems = categories.map<ICategoryMenuItem>((category) => ({
   category,
@@ -20,7 +20,7 @@ const findEventsMenuItems = categories.map<ICategoryMenuItem>((category) => ({
 }));
 
 export const findEventsMenu: IMenu<ICategoryMenuItem> = {
-  menuId: tabManager.findEvents.menuId as string,
+  menuId: navManager.findEvents.menuId as string,
   title: 'Find Events',
   baseHref: '/FindEvents',
   menuItems: findEventsMenuItems,

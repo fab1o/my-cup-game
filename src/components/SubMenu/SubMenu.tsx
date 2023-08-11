@@ -38,7 +38,7 @@ const SubMenu: <T extends IMenuItem | ICategoryMenuItem>(
               detail={true}
               style={menuItem.itemStyle}
             >
-              <IonIcon slot="start" ios={ios} md={md} icon={icon} />
+              <IonIcon aria-hidden="true" slot="start" ios={ios} md={md} icon={icon} />
               <IonLabel style={menuItem.labelStyle}>{menuItem.title}</IonLabel>
             </IonItem>
           </IonMenuToggle>

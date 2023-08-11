@@ -5,7 +5,7 @@ import {
   HostEvent,
   SoccerLeagues,
   MyPickupGames,
-} from '../../../pages';
+} from '../../pages';
 
 interface RouteConfig {
   name: string;

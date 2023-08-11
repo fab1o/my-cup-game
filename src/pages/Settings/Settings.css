@@ -1,0 +1,11 @@
+.settings ion-item {
+  --transition: none;
+}
+
+ion-item.stars {
+  --transition: unset;
+}
+
+ion-row.no-wrap {
+  flex-wrap: nowrap;
+}

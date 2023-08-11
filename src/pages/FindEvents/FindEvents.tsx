@@ -16,7 +16,7 @@ export const FindEvents: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton></IonMenuButton>
+            <IonMenuButton color="purple" />
           </IonButtons>
           <IonTitle>Find Events</IonTitle>
         </IonToolbar>

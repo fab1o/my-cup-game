@@ -1,4 +1,12 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
 
 import ExploreContainer from '../../../../components/ExploreContainer';
 
@@ -8,7 +16,7 @@ export const SoccerLeagues: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton></IonMenuButton>
+            <IonMenuButton color="purple" />
           </IonButtons>
           <IonTitle>Soccer Leagues</IonTitle>
         </IonToolbar>

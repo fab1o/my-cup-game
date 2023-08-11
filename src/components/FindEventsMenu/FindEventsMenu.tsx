@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 
 import { findEventsMenu } from './config/findEventsMenu';
-import { DEFAULT_CATEGORY } from '../config/categories';
+import { DEFAULT_CATEGORY } from '../../api/models/categories';
 
 import FindEventsSubMenu from './FindEventsSubMenu';
 
@@ -28,7 +28,7 @@ const FindEventsMenu: React.FC<FindEventsMenuProps> = ({
           <IonTitle>{findEventsMenu.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-no-padding">
+      <IonContent className="custom ion-no-padding">
         <IonAccordionGroup value={category}>
           {findEventsMenu.menuItems.map((menuItem) => (
             <FindEventsSubMenu

@@ -17,7 +17,7 @@ const MyEventsMenu: React.FC<MyEventsMenuProps> = ({ contentId }) => {
           <IonTitle>{myEventsMenu.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-no-padding">
+      <IonContent className="custom ion-no-padding">
         <SubMenu<IMenuItem>
           name={myEventsMenu.menuId}
           menuItems={myEventsMenu.menuItems}

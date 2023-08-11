@@ -1,29 +1,94 @@
 ion-menu::part(backdrop) {
-  background-color: rgba(35, 91, 147, 0.5);
+  background-color: var(--ion-color-step-300);
 }
 
 /* curvature */
 ion-menu::part(container) {
   border-radius: 0 20px 20px 0;
-  box-shadow: 4px 0px 16px rgba(35, 91, 147, 0.18);
-}
-
-ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
-}
-
-ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+  box-shadow: 6px 10px 26px rgba(var(--ion-color-purple-rgb), 0.5);
 }
 
 ion-item.selected {
-  --color: var(--ion-color-primary);
+  --color: var(--ion-color-purple);
 }
 
-ion-menu.ios ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+body.dark ion-menu ion-item {
+  --background: unset;
 }
 
-ion-menu.ios ion-item .selected ion-icon {
-  color: var(--ion-color-primary);
+ion-menu ion-item {
+  --border-color: var(--ion-tem-color);
+}
+
+ion-menu ion-item.selected {
+  --background: rgba(var(--ion-color-purple-rgb), 0.24);
+}
+
+body.dark ion-menu ion-item.selected {
+  --background: rgba(var(--ion-color-purple-rgb), 0.24);
+}
+
+ion-menu ion-item .selected ion-icon {
+  --color: var(--ion-color-purple);
+}
+
+/* ion-menu ion-accordion::part(header) {
+  background: var(--ion-color-purple);
+} */
+
+.ion-no-padding-start {
+  padding-left: 0px;
+}
+
+ion-title {
+  color: var(--ion-color-purple-contrast);
+}
+
+ion-menu-button {
+  color: var(--ion-color-purple-contrast);
+}
+
+ion-tab-button {
+  border-radius: 16px !important;
+  --color: var(--ion-color-dark);
+}
+
+ion-tab-button ion-icon {
+  font-size: 1.75rem;
+}
+
+ion-tab-bar {
+  --color: var(--ion-color-dark);
+  --background: var(--ion-tab-bar-background, var(--ion-color-step-50));
+  box-shadow: 0px 1px 10px var(--ion-color-dark-shade);
+  border-radius: 50px !important;
+
+  height: 50px;
+  width: 90%;
+
+  bottom: 20px;
+  position: relative;
+  margin: 0 auto !important;
+  border-top: none;
+}
+
+body.dark ion-tab-bar {
+  --color: var(--ion-color-dark);
+  --background: var(--ion-tab-bar-background, var(--ion-color-step-50));
+}
+
+ion-tab-button {
+  border-radius: 16px !important;
+}
+
+ion-list-header {
+  --color: var(--ion-color-dark);
+}
+
+button.action-sheet-button.sc-ion-action-sheet-md {
+  color: var(--ion-color-dark);
+}
+
+button.action-sheet-selected.sc-ion-action-sheet-md {
+  color: var(--ion-color-purple) !important;
 }
